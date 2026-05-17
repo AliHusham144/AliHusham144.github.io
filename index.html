@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Awadalkareem — DevOps & IT Systems Administrator</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --c1: #FF5733;
+    --c2: #FFC300;
+    --c3: #3AE8A0;
+    --c4: #5B8FFF;
+    --c5: #FF3D9A;
+    --dark: #0C0C0F;
+    --dark2: #141418;
+    --dark3: #1C1C22;
+    --border: rgba(255,255,255,0.07);
+    --text: #E8E8EE;
+    --muted: #888899;
+    --font-d: 'Syne', sans-serif;
+    --font-b: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(12,12,15,0.88); backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--border); }
+  .logo { font-family: var(--font-d); font-weight: 800; font-size: 1.4rem; background: linear-gradient(90deg, var(--c1), var(--c5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 9rem 4rem 5rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 70% 40%, rgba(91,143,255,0.13) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 70%, rgba(255,61,154,0.10) 0%, transparent 70%), radial-gradient(ellipse 35% 35% at 80% 85%, rgba(58,232,160,0.09) 0%, transparent 65%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%); }
+  .hero-content { position: relative; z-index: 1; max-width: 820px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(58,232,160,0.1); border: 0.5px solid rgba(58,232,160,0.3); color: var(--c3); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 1.75rem; }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c3); animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+  h1 { font-family: var(--font-d); font-size: clamp(3rem, 7.5vw, 6.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; margin-bottom: 1.5rem; }
+  .grad { background: linear-gradient(95deg, var(--c1) 0%, var(--c5) 50%, var(--c4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 540px; margin-bottom: 2.75rem; font-weight: 300; }
+  .ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-p { display: inline-block; background: var(--c1); color: #fff; padding: 13px 30px; border-radius: 9px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: transform 0.15s, box-shadow 0.15s; }
+  .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,87,51,0.38); }
+  .btn-g { display: inline-block; background: transparent; color: var(--text); padding: 13px 30px; border-radius: 9px; text-decoration: none; font-weight: 500; font-size: 0.95rem; border: 0.5px solid rgba(255,255,255,0.2); transition: border-color 0.2s, background 0.2s; }
+  .btn-g:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+  .stats { display: flex; gap: 3.5rem; margin-top: 4.5rem; padding-top: 2.5rem; border-top: 0.5px solid var(--border); }
+  .stat-n { font-family: var(--font-d); font-size: 2.2rem; font-weight: 800; }
+  .stat-l { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-top: 2px; }
+
+  /* SHARED */
+  section { padding: 6.5rem 4rem; }
+  .s-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.75rem; }
+  .s-title { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+  .s-sub { color: var(--muted); max-width: 480px; margin-bottom: 3rem; font-weight: 300; }
+  .sep { height: 0.5px; background: var(--border); margin: 0 4rem; }
+
+  /* ABOUT */
+  #about { background: var(--dark2); }
+  .about-grid { display: grid; grid-template-columns: 380px 1fr; gap: 5rem; align-items: center; }
+  .about-img { border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; background: var(--dark3); border: 0.5px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: var(--muted); }
+  .about-img svg { width: 72px; height: 72px; opacity: 0.25; }
+  .about-img p { font-size: 0.85rem; opacity: 0.45; }
+  .about-corner { position: absolute; bottom: 1.25rem; left: 1.25rem; background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); border: 0.5px solid var(--border); padding: 12px 18px; border-radius: 12px; }
+  .corner-name { font-family: var(--font-d); font-weight: 700; font-size: 1rem; }
+  .corner-role { font-size: 0.75rem; color: var(--muted); }
+  .about-text .p { color: var(--muted); margin-bottom: 1.25rem; font-weight: 300; font-size: 1.05rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+  .tag { padding: 6px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; border: 0.5px solid; cursor: default; }
+  .t1 { border-color: rgba(255,87,51,0.4); color: #FF7A5A; background: rgba(255,87,51,0.08); }
+  .t2 { border-color: rgba(255,195,0,0.4); color: var(--c2); background: rgba(255,195,0,0.08); }
+  .t3 { border-color: rgba(58,232,160,0.4); color: var(--c3); background: rgba(58,232,160,0.08); }
+  .t4 { border-color: rgba(91,143,255,0.4); color: var(--c4); background: rgba(91,143,255,0.08); }
+  .t5 { border-color: rgba(255,61,154,0.4); color: var(--c5); background: rgba(255,61,154,0.08); }
+
+  /* SKILLS */
+  #skills { background: var(--dark); }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+  .sk-cell { padding: 2rem 1.75rem; background: var(--dark2); transition: background 0.2s; cursor: default; }
+  .sk-cell:hover { background: var(--dark3); }
+  .sk-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .sk-name { font-family: var(--font-d); font-weight: 700; font-size: 1rem; margin-bottom: 3px; }
+  .sk-lv { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+  .sk-bar { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .sk-fill { height: 100%; border-radius: 2px; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--dark2); }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 3rem; padding: 2.75rem 0; border-bottom: 0.5px solid var(--border); }
+  .exp-item:first-child { border-top: 0.5px solid var(--border); }
+  .exp-date { font-size: 0.8rem; color: var(--muted); padding-top: 5px; font-weight: 300; }
+  .exp-role { font-family: var(--font-d); font-weight: 700; font-size: 1.25rem; margin-bottom: 4px; }
+  .exp-co { font-size: 0.9rem; margin-bottom: 0.75rem; font-weight: 500; }
+  .exp-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+
+  /* PROJECTS */
+  #projects { background: var(--dark); }
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .proj-card { background: var(--dark2); border: 0.5px solid var(--border); border-radius: 18px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; cursor: pointer; }
+  .proj-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.14); }
+  .proj-thumb { height: 190px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .proj-num { font-family: var(--font-d); font-weight: 800; font-size: 4rem; opacity: 0.12; letter-spacing: -0.06em; }
+  .proj-type { position: absolute; top: 1rem; right: 1rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 12px; border-radius: 100px; border: 0.5px solid; font-weight: 700; }
+  .proj-body { padding: 1.5rem 1.75rem; }
+  .proj-title { font-family: var(--font-d); font-weight: 700; font-size: 1.1rem; margin-bottom: 7px; }
+  .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; font-weight: 300; }
+  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .proj-tag { font-size: 0.7rem; padding: 4px 10px; border-radius: 100px; background: var(--dark3); color: var(--muted); border: 0.5px solid var(--border); }
+
+  /* CONTACT */
+  #contact { background: var(--dark2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+  .ct-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 2.5rem; font-weight: 300; }
+  .ct-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .ct-link { display: flex; align-items: center; gap: 14px; padding: 1.1rem 1.35rem; border-radius: 14px; background: var(--dark3); border: 0.5px solid var(--border); text-decoration: none; color: var(--text); transition: border-color 0.2s, background 0.2s; }
+  .ct-link:hover { border-color: rgba(255,255,255,0.18); background: var(--dark); }
+  .ct-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .ct-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .ct-val { font-weight: 500; font-size: 0.9rem; margin-top: 2px; }
+  .ct-form { display: flex; flex-direction: column; gap: 1rem; }
+  .fg { display: flex; flex-direction: column; gap: 6px; }
+  .fg label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .fg input, .fg textarea { background: var(--dark3); border: 0.5px solid var(--border); border-radius: 11px; padding: 13px 18px; color: var(--text); font-family: var(--font-b); font-size: 0.95rem; font-weight: 300; outline: none; resize: none; transition: border-color 0.2s; }
+  .fg input:focus, .fg textarea:focus { border-color: rgba(255,255,255,0.22); }
+  .fg input::placeholder, .fg textarea::placeholder { color: rgba(136,136,153,0.45); }
+  .btn-send { background: linear-gradient(90deg, var(--c1), var(--c5)); color: #fff; border: none; padding: 14px 32px; border-radius: 11px; font-family: var(--font-b); font-size: 0.95rem; font-weight: 600; cursor: pointer; align-self: flex-start; transition: opacity 0.2s, transform 0.15s; }
+  .btn-send:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--dark); border-top: 0.5px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--muted); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.vis { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 4rem 1.5rem; }
+    .sep { margin: 0 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .proj-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .stats { gap: 2rem; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Ali Div.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content reveal">
+    <div class="badge"><span class="badge-dot"></span> Open to DevOps & IT Systems roles in UAE</div>
+    <h1>Infrastructure.<br><span class="grad">Reliability. Scale.</span></h1>
+    <p class="hero-sub">DevOps-focused IT Systems Administrator with 3+ years in infrastructure support, deployment operations, and service reliability — based in Dubai, UAE.</p>
+    <div class="ctas">
+      <a href="#projects" class="btn-p">View my work</a>
+      <a href="#contact" class="btn-g">Get in touch</a>
+    </div>
+    <div class="stats">
+      <div><div class="stat-n" style="color:var(--c1)">3+</div><div class="stat-l">Years exp.</div></div>
+      <div><div class="stat-n" style="color:var(--c3)">8+</div><div class="stat-l">Certifications</div></div>
+      <div><div class="stat-n" style="color:var(--c4)">3</div><div class="stat-l">Companies</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-img">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="22" r="12" stroke="#888899" stroke-width="1.5"/>
+        <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#888899" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p>Add your photo here</p>
+      <div class="about-corner">
+        <div class="corner-name">Ali Awadalkareem</div>
+        <div class="corner-role">DevOps · IT Systems Admin</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="s-tag" style="color:var(--c5)">About me</div>
+      <h2 class="s-title">Infrastructure-first, reliability-obsessed</h2>
+      <p class="p">DevOps-focused IT Systems Administrator with 3+ years of experience across infrastructure support, network administration, software deployment, patch management, ERP support, and service operations in Dubai, UAE.</p>
+      <p class="p">Hands-on with Windows administration, Active Directory, Group Policy, LAN/WAN troubleshooting, and incident resolution — with a strong focus on system stability, support quality, and operational reliability. Holder of CCNA, ITIL 4, ISC2 CC, and multiple ISO certifications.</p>
+      <div class="tags">
+        <span class="tag t1">Windows Admin</span>
+        <span class="tag t2">Active Directory</span>
+        <span class="tag t3">Linux</span>
+        <span class="tag t4">CI/CD</span>
+        <span class="tag t5">Docker</span>
+        <span class="tag t1">CCNA</span>
+        <span class="tag t3">AWS</span>
+        <span class="tag t4">ITIL 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="s-tag" style="color:var(--c2)">Expertise</div>
+    <h2 class="s-title">Skills &amp; Technologies</h2>
+    <p class="s-sub">The tools and languages I use to build great products.</p>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="sk-cell">
+      <div class="sk-icon">🪟</div>
+      <div class="sk-name">Windows Admin</div>
+      <div class="sk-lv">Advanced</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:92%;background:var(--c1)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🗂️</div>
+      <div class="sk-name">Active Directory</div>
+      <div class="sk-lv">Advanced</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:90%;background:var(--c2)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🐧</div>
+      <div class="sk-name">Linux</div>
+      <div class="sk-lv">Intermediate</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:72%;background:var(--c3)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🌐</div>
+      <div class="sk-name">LAN/WAN & Wi-Fi</div>
+      <div class="sk-lv">Advanced</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:88%;background:var(--c4)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🔄</div>
+      <div class="sk-name">CI/CD Concepts</div>
+      <div class="sk-lv">Intermediate</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:70%;background:var(--c5)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🐋</div>
+      <div class="sk-name">Docker</div>
+      <div class="sk-lv">Intermediate</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:68%;background:var(--c4)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">☁️</div>
+      <div class="sk-name">AWS Fundamentals</div>
+      <div class="sk-lv">Intermediate</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:65%;background:var(--c2)"></div></div>
+    </div>
+    <div class="sk-cell">
+      <div class="sk-icon">🛡️</div>
+      <div class="sk-name">Cybersecurity</div>
+      <div class="sk-lv">Intermediate</div>
+      <div class="sk-bar"><div class="sk-fill" style="width:75%;background:var(--c3)"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="s-tag" style="color:var(--c3)">Career</div>
+    <h2 class="s-title">Experience</h2>
+    <p class="s-sub">Where I've worked and what I've built along the way.</p>
+  </div>
+  <div class="exp-list reveal">
+    <div class="exp-item">
+      <div class="exp-date">Jan 2025 — Apr 2026</div>
+      <div>
+        <div class="exp-role">IT Engineer (Freelance)</div>
+        <div class="exp-co" style="color:var(--c1)"><a href="https://azyratrading.ae" style="color:inherit;text-decoration:none">Azyra Trading FZE</a> · Dubai, UAE</div>
+        <div class="exp-desc">Designed and implemented IT infrastructure solutions to support business operations and service continuity. Managed and optimized network systems and communication infrastructure. Delivered software and technical support across the organization and supported digital transformation initiatives through practical infrastructure enhancements.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Feb 2024 — Dec 2024</div>
+      <div>
+        <div class="exp-role">Sales Representative</div>
+        <div class="exp-co" style="color:var(--c4)"><a href="http://www.al-zahranilogistics.com" style="color:inherit;text-decoration:none">Al Zahrani Logistics</a> · UAE</div>
+        <div class="exp-desc">Supported daily operations by troubleshooting network and software issues affecting service delivery. Coordinated with operations teams to maintain timely execution of business processes. Prepared performance reports and tracked KPIs for operational visibility.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2023 — Jan 2024</div>
+      <div>
+        <div class="exp-role">ERP Support & IT Support Specialist</div>
+        <div class="exp-co" style="color:var(--c3)"><a href="http://www.xcmcme.ae" style="color:inherit;text-decoration:none">Xuzhou Construction Machinery Middle East</a> · UAE</div>
+        <div class="exp-desc">Provided L1/L2 support for hardware, software, network, and ERP systems in a business-critical environment. Administered Active Directory and Group Policy, managed software deployment and patch management, and troubleshot LAN/WAN and Wi-Fi issues. Performed preventive maintenance, coordinated with vendors, and trained end users to maintain strong support standards.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="s-tag" style="color:var(--c4)">Portfolio</div>
+    <h2 class="s-title">Selected Projects</h2>
+    <p class="s-sub">A few things I've built that I'm proud of.</p>
+  </div>
+  <div class="proj-grid reveal">
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,rgba(255,87,51,.15),rgba(255,61,154,.1))">
+        <div class="proj-num">01</div>
+        <div class="proj-type" style="border-color:rgba(255,87,51,.4);color:#FF7A5A;background:rgba(255,87,51,.1)">Live · SaaS</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Real Estate SaaS Dashboard</div>
+        <div class="proj-desc">Built and deployed a live real estate SaaS dashboard for business operations and day-to-day management workflows. Demonstrated hands-on product ownership from implementation through live deployment.</div>
+        <div class="proj-tags" style="margin-bottom:1rem">
+          <span class="proj-tag">Vercel</span>
+          <span class="proj-tag">SaaS</span>
+          <span class="proj-tag">Dashboard</span>
+          <span class="proj-tag">Operations</span>
+        </div>
+        <a href="https://realestate-saas-five.vercel.app" target="_blank" style="font-size:0.8rem;color:var(--c3);text-decoration:none;border-bottom:0.5px solid rgba(58,232,160,0.3);padding-bottom:1px">↗ View live project</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,rgba(58,232,160,.12),rgba(91,143,255,.1))">
+        <div class="proj-num">02</div>
+        <div class="proj-type" style="border-color:rgba(58,232,160,.4);color:var(--c3);background:rgba(58,232,160,.1)">Infrastructure</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">IT Infrastructure · Azyra Trading</div>
+        <div class="proj-desc">Designed and implemented end-to-end IT infrastructure for business continuity. Optimized network systems and led digital transformation for the organization's internal operations.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Networking</span>
+          <span class="proj-tag">Windows Server</span>
+          <span class="proj-tag">IT Ops</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,rgba(91,143,255,.15),rgba(255,195,0,.08))">
+        <div class="proj-num">03</div>
+        <div class="proj-type" style="border-color:rgba(91,143,255,.4);color:var(--c4);background:rgba(91,143,255,.1)">ERP · Support</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">ERP & IT Support · XCMCME</div>
+        <div class="proj-desc">L1/L2 support across hardware, software, network, and ERP in a business-critical environment. Active Directory, Group Policy, patch management, and preventive maintenance across all end-user systems.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Active Directory</span>
+          <span class="proj-tag">ERP</span>
+          <span class="proj-tag">Patch Mgmt</span>
+          <span class="proj-tag">L2 Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="background:var(--dark)">
+  <div class="reveal">
+    <div class="s-tag" style="color:var(--c2)">Credentials</div>
+    <h2 class="s-title">Certifications</h2>
+    <p class="s-sub">Industry-recognized qualifications across networking, security, and IT service management.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem" class="reveal">
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(58,232,160,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">🌐</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">CCNA</div><div style="font-size:0.75rem;color:var(--muted)">Cisco Certified Network Associate</div></div>
+    </div>
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(91,143,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📋</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">ITIL 4 Foundation</div><div style="font-size:0.75rem;color:var(--muted)">IT Service Management</div></div>
+    </div>
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,87,51,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">🛡️</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">ISC2 CC</div><div style="font-size:0.75rem;color:var(--muted)">Certified in Cybersecurity</div></div>
+    </div>
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,195,0,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">🔒</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">ISO/IEC 27001</div><div style="font-size:0.75rem;color:var(--muted)">Information Security Associate</div></div>
+    </div>
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(58,232,160,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">⚙️</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">ISO/IEC 20000</div><div style="font-size:0.75rem;color:var(--muted)">IT Service Management Associate</div></div>
+    </div>
+    <div style="background:var(--dark2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,61,154,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">✅</div>
+      <div><div style="font-family:var(--font-d);font-weight:700;font-size:0.9rem">ISO 9001 & LFPC & CASF</div><div style="font-size:0.75rem;color:var(--muted)">Quality · Lean · Scrum Fundamentals</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid reveal">
+    <div>
+      <div class="s-tag" style="color:var(--c5)">Let's talk</div>
+      <h2 class="s-title">Get in touch</h2>
+      <p class="ct-sub">Available for DevOps Engineer and IT Systems Administrator roles in Dubai (remote or on-site). Let's connect.</p>
+      <div class="ct-links">
+        <a href="mailto:aliawadalkareem@outlook.com" class="ct-link">
+          <div class="ct-icon" style="background:rgba(255,87,51,.12);color:var(--c1)">✉️</div>
+          <div>
+            <div class="ct-label">Email</div>
+            <div class="ct-val">aliawadalkareem@outlook.com</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/ali-awadalkareem" target="_blank" class="ct-link">
+          <div class="ct-icon" style="background:rgba(91,143,255,.12);color:var(--c4)">💼</div>
+          <div>
+            <div class="ct-label">LinkedIn</div>
+            <div class="ct-val">linkedin.com/in/ali-awadalkareem</div>
+          </div>
+        </a>
+        <a href="https://github.com/AliHusham144" target="_blank" class="ct-link">
+          <div class="ct-icon" style="background:rgba(58,232,160,.12);color:var(--c3)">🐙</div>
+          <div>
+            <div class="ct-label">GitHub</div>
+            <div class="ct-val">github.com/AliHusham144</div>
+          </div>
+        </a>
+        <a href="https://x.com/A_Awadalkareem" target="_blank" class="ct-link">
+          <div class="ct-icon" style="background:rgba(255,195,0,.12);color:var(--c2)">🐦</div>
+          <div>
+            <div class="ct-label">Twitter / X</div>
+            <div class="ct-val">@A_Awadalkareem</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="ct-form">
+      <div class="fg">
+        <label>Your name</label>
+        <input type="text" placeholder="John Doe" />
+      </div>
+      <div class="fg">
+        <label>Email address</label>
+        <input type="email" placeholder="john@example.com" />
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea rows="5" placeholder="Tell me about the role or project..."></textarea>
+      </div>
+      <button class="btn-send" onclick="this.textContent='Sent ✓'; this.style.background='var(--c3)'; this.style.color='#0C0C0F';">Send message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ali Awadalkareem · Dubai, UAE</span>
+  <span>DevOps · IT Systems Administrator 🚀</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('vis'), i * 90);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
